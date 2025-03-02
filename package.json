@@ -1,0 +1,23 @@
+{
+  "name": "your-ideal-outfits",
+  "version": "1.0.0",
+  "description": "Pagina para la gestion de inventario de productos y prendas de vestir mujer",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --env-file .env --watch -r ts-node/register src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "your-ideal-backend"
+  },
+  "author": "Paola Ceballos",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "express": "4.21.2"
+  }
+}
