@@ -8,7 +8,7 @@ const router = Router();
 
 router.post('/login', 
     body('email')
-        .notEmpty().withMessage('El correo es requerido').bail()
+        .notEmpty().withMessage('El correo es obligatorio').bail()
         .isEmail().withMessage('El correo no es válido'),
     body('password')
         .notEmpty().withMessage('La contraseña es requerida').bail()
