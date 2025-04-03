@@ -95,7 +95,7 @@ export class OrderController {
 
             res.status(201).json(createdOrder);
         } catch (error) {
-            res.status(500).json({ message: 'Hubo un Error inesperado' });
+            res.status(500).json({ message: 'Hubo un Error inesperado', error: error });
         }
     }
 

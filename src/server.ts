@@ -4,7 +4,6 @@ import authRouter from './routes/authRouter';
 import productRouter from './routes/productRouter'
 import orderRouter from './routes/orderRouter'
 
-
 async function connectDB() {
     try {
         await instaceDB.authenticate();
@@ -17,10 +16,10 @@ async function connectDB() {
 
 connectDB();
 const app = express();
-
 app.use(express.json());
+
 app.use('/api/auth', authRouter);
-app.use('/api', productRouter);
-app.use('/api', orderRouter);
+app.use('/api/products', productRouter);
+app.use('/api/orders', orderRouter);
 
 export default app;

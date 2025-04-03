@@ -30,17 +30,17 @@ class Order extends Model {
     })
     declare address: string;
 
-    @HasMany(() => OrderDetail, {
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-    })
-    declare orderDetail: OrderDetail[]
-
     @AllowNull(false)
     @Column({
         type: DataType.DECIMAL
     })
     declare total: number;
+
+    @HasMany(() => OrderDetail, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+    })
+    declare orderDetail: OrderDetail[]
 }
 
 export default Order;

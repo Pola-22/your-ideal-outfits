@@ -6,9 +6,9 @@ import { ProductController } from '../controllers/ProductController';
 
 const router = Router();
 
-router.get('/product', ProductController.getProducts);
+router.get('/', ProductController.getProducts);
 
-router.get('/product/:id',
+router.get('/:id',
     param('id')
         .notEmpty().withMessage('ID del producto es requerido').bail()
         .isNumeric().withMessage('ID del producto no válido'),
@@ -18,7 +18,7 @@ router.get('/product/:id',
 
 router.use(authenticate);
 
-router.post('/product', 
+router.post('/', 
     body('name')
         .notEmpty().withMessage('Nombre del producto es requerido').bail()
         .isLength({ max: 100 }).withMessage('Nombre del producto debe ser máximo 100 caracteres'),
@@ -35,7 +35,7 @@ router.post('/product',
     ProductController.create
 );
 
-router.put('/product/:id', 
+router.put('/:id', 
     param('id')
         .notEmpty().withMessage('ID del producto es requerido').bail()
         .isNumeric().withMessage('ID del producto no válido'),
@@ -55,7 +55,7 @@ router.put('/product/:id',
     ProductController.updateProduct
 );
 
-router.delete('/product/:id',
+router.delete('/:id',
     param('id')
         .notEmpty().withMessage('ID del producto es requerido').bail()
         .isNumeric().withMessage('ID del producto no válido'),

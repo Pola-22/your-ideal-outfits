@@ -7,7 +7,7 @@ import OrderDetail from '../models/OrderDetail';
 
 const router = Router();
 
-router.post('/orders', 
+router.post('/', 
     body('clientName')
         .notEmpty().withMessage('Nombre del cliente es requerido').bail()
         .isLength({ max: 200 }).withMessage('Nombre del cliente debe ser máximo 200 caracteres'),
@@ -40,18 +40,18 @@ router.post('/orders',
 
 router.use(authenticate);
 
-router.get('/orders', OrderController.getOrders);
+router.get('/', OrderController.getOrders);
 
-router.get('/orders/:orderId',
-    param('orderId')
+router.get('/:id',
+    param('id')
         .notEmpty().withMessage('ID del pedido es requerido').bail()
         .isNumeric().withMessage('ID del pedido no válido'),
     handleInputErrors,
     OrderController.getOrder
 );
 
-router.put('/orders/:orderId', 
-    param('orderId')
+router.put('/:id', 
+    param('id')
         .notEmpty().withMessage('ID del pedido es requerido').bail()
         .isNumeric().withMessage('ID del pedido no válido'),
     body('clientName')
@@ -84,8 +84,8 @@ router.put('/orders/:orderId',
     OrderController.updateOrder
 );
 
-router.delete('/orders/:orderId',
-    param('orderId')
+router.delete('/:id',
+    param('id')
         .notEmpty().withMessage('ID del pedido es requerido').bail()
         .isNumeric().withMessage('ID del pedido no válido'),
     handleInputErrors,
