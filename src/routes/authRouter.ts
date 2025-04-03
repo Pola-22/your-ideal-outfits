@@ -8,7 +8,7 @@ const router = Router();
 
 router.post('/login', 
     body('email')
-        .notEmpty().withMessage('El correo es obligatorio').bail()
+        .notEmpty().withMessage('El correo es requerido').bail()
         .isEmail().withMessage('El correo no es válido'),
     body('password')
         .notEmpty().withMessage('La contraseña es requerida').bail()
@@ -17,9 +17,9 @@ router.post('/login',
     AuthController.login
 );
 
-router.get('/user',
-    authenticate,
-    AuthController.user
-);
+// router.get('/user',
+//     authenticate,
+//     AuthController.user
+// );
 
 export default router;
