@@ -73,10 +73,16 @@ Para ejecutar la suite de pruebas:
 npm run test
 ```
 
-Para ejecutar las pruebas unitarias con reporte de cobertura:
+Para ejecutar las pruebas unitarias y de integración :
 
 ```bash
-npm run test:unit
+npm run test
+```
+
+Para consultar la cobertura de pruebas:
+
+```bash
+npm run test:coverage
 ```
 
 ## Scripts Disponibles
@@ -86,3 +92,4 @@ npm run test:unit
 -   `npm run test:unit`: Ejecuta las pruebas unitarias y genera un reporte de cobertura.
 -   `npm run build`: Compila el código TypeScript a JavaScript.
 -   `npm start`: Inicia la aplicación compilada desde el directorio `dist`. 
+
