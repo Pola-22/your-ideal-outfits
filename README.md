@@ -91,5 +91,7 @@ npm run test:coverage
 -   `npm run test`: Ejecuta la suite de pruebas con Jest.
 -   `npm run test`: Ejecuta las pruebas unitarias.
 -   `npm run build`: Compila el código TypeScript a JavaScript.
--   `npm start`: Inicia la aplicación compilada desde el directorio `dist`. 
+-   `npm start`: Inicia la aplicación compilada desde el directorio `dist`.
+-   `npm start`: Inicia la aplicación compilada desde el directorio `dist`.
+-   `npm run test:coverage`: Consultar covertura de pruebas.
 
