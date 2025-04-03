@@ -89,7 +89,7 @@ npm run test:coverage
 
 -   `npm run dev`: Inicia la aplicación en modo desarrollo usando `ts-node` con `--watch`.
 -   `npm run test`: Ejecuta la suite de pruebas con Jest.
--   `npm run test:unit`: Ejecuta las pruebas unitarias y genera un reporte de cobertura.
+-   `npm run test`: Ejecuta las pruebas unitarias.
 -   `npm run build`: Compila el código TypeScript a JavaScript.
 -   `npm start`: Inicia la aplicación compilada desde el directorio `dist`. 
 
