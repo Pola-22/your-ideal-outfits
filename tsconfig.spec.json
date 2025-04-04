@@ -1,0 +1,19 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "outDir": "dist-tests",
+      "types": ["jest", "node"],
+      "module": "NodeNext",
+      "target": "ESNext",
+      "esModuleInterop": true
+    },
+    "include": [
+      "tests/**/**/*.test.ts"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist",
+      "**/*.d.ts"
+    ]
+}
+  
