@@ -25,9 +25,5 @@ export class AuthController{
         } catch (error) {
             res.status(500).json({ message: 'Hubo un Error inesperado' });
         }
-    }
-
-    // static user = async (req: Request, res: Response) => {
-    //     res.json(req.user);
-    // }    
+    }   
 }

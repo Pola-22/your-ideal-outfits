@@ -16,10 +16,4 @@ router.post('/login',
     handleInputErrors,
     AuthController.login
 );
-
-// router.get('/user',
-//     authenticate,
-//     AuthController.user
-// );
-
 export default router;
