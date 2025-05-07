@@ -21,9 +21,32 @@ export class AuthController{
             }
 
             const token = generateJwt(user.id);
+
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+                path: '/'
+            })
+
             res.status(200).json({ token: token });
         } catch (error) {
             res.status(500).json({ message: 'Hubo un Error inesperado' });
         }
-    }   
+    }
+    
+    static logout = async (req: Request, res: Response) => {
+        try {
+            res.clearCookie('token', {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+                path: '/'
+            });
+
+            res.status(200).json({ message: 'Sesión cerrada exitosamente' });
+        } catch (error) {
+            res.status(500).json({ message: 'Error al cerrar la sesión' });
+        }
+    }
 }

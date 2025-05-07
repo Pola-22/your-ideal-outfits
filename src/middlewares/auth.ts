@@ -12,8 +12,12 @@ declare global {
 
 export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const bearer = req.headers.authorization;
+        const tokenUser = req.cookies?.token;
+        if (tokenUser) {
+            req.headers.authorization = `Bearer ${tokenUser}`;
+        }
 
+        const bearer = req.headers.authorization;
         if (!bearer) {
             res.status(401).json({ message: 'No autorizado' });
             return;
@@ -40,4 +44,12 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
     } catch (error) {
         res.status(401).json({ message: 'Token no válido' });
     }
+}
+
+export function jwtFromCookie(req: Request, next: NextFunction) {
+    const token = req.cookies?.token;
+    if (token) {
+      req.headers.authorization = `Bearer ${token}`;
+    }
+    next();
 }

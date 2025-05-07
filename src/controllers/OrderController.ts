@@ -44,7 +44,6 @@ export class OrderController {
         try {
             const { clientName, documentNumber, numberPhone, address, orderDetail } = req.body;
 
-            // Calcular el total del pedido y verificar stock
             let total = 0;
             for (const detail of orderDetail) {
                 const product = await Product.findByPk(detail.id_product);
@@ -61,7 +60,6 @@ export class OrderController {
                 total += product.price * detail.quantity;
             }
 
-            // Crear el pedido
             const order = await Order.create({
                 client_name: clientName,
                 document_number: documentNumber,
@@ -70,7 +68,6 @@ export class OrderController {
                 total
             });
 
-            // Crear los detalles del pedido y actualizar stock
             for (const detail of orderDetail) {
                 await OrderDetail.create({
                     id_order: order.id,
@@ -78,14 +75,12 @@ export class OrderController {
                     quantity: detail.quantity
                 });
 
-                // Actualizar stock del producto
                 const product = await Product.findByPk(detail.id_product);
                 await product?.update({
                     stock: product.stock - detail.quantity
                 });
             }
 
-            // Obtener el pedido completo con sus detalles
             const createdOrder = await Order.findByPk(order.id, {
                 include: [{
                     model: OrderDetail,
@@ -104,7 +99,6 @@ export class OrderController {
             const { id } = req.params;
             const { clientName, documentNumber, numberPhone, address, orderDetail } = req.body;
 
-            // Verificar si existe el pedido
             const order = await Order.findByPk(id, {
                 include: [OrderDetail]
             });
@@ -114,7 +108,6 @@ export class OrderController {
                 return;
             }
 
-            // Restaurar el stock de los productos del pedido actual
             for (const detail of order.orderDetail) {
                 const product = await Product.findByPk(detail.id_product);
                 if (product) {
@@ -124,7 +117,6 @@ export class OrderController {
                 }
             }
 
-            // Calcular nuevo total y verificar stock para los nuevos detalles
             let total = 0;
             for (const detail of orderDetail) {
                 const product = await Product.findByPk(detail.id_product);
@@ -141,7 +133,6 @@ export class OrderController {
                 total += product.price * detail.quantity;
             }
 
-            // Actualizar el pedido
             await order.update({
                 client_name: clientName,
                 document_number: documentNumber,
@@ -150,12 +141,10 @@ export class OrderController {
                 total
             });
 
-            // Eliminar detalles antiguos
             await OrderDetail.destroy({
                 where: { id_order: order.id }
             });
 
-            // Crear nuevos detalles y actualizar stock
             for (const detail of orderDetail) {
                 await OrderDetail.create({
                     id_order: order.id,
@@ -169,7 +158,6 @@ export class OrderController {
                 });
             }
 
-            // Obtener el pedido actualizado
             const updatedOrder = await Order.findByPk(id, {
                 include: [{
                     model: OrderDetail,
@@ -195,7 +183,6 @@ export class OrderController {
                 return;
             }
 
-            // Restaurar el stock de los productos
             for (const detail of order.orderDetail) {
                 const product = await Product.findByPk(detail.id_product);
                 if (product) {
@@ -205,7 +192,6 @@ export class OrderController {
                 }
             }
 
-            // Eliminar el pedido (los detalles se eliminarán en cascada)
             await order.destroy();
 
             res.status(200).json({ message: 'Pedido eliminado exitosamente' });

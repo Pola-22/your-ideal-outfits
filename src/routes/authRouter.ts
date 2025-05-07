@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
-import { authenticate } from '../middlewares/auth';
 import { handleInputErrors } from '../middlewares/validation';
 import { AuthController } from '../controllers/AuthController';
+import { authenticate } from '../middlewares/auth';
 
 const router = Router();
 
@@ -16,4 +16,9 @@ router.post('/login',
     handleInputErrors,
     AuthController.login
 );
+
+router.use(authenticate);
+
+router.post('/logout', AuthController.logout);
+
 export default router;

@@ -25,6 +25,8 @@ router.post('/',
     body('description')
         .notEmpty().withMessage('Descripción del producto es requerido').bail()
         .isLength({ max: 500 }).withMessage('Nombre del producto debe ser máximo 500 caracteres'),
+    body('img')
+        .isLength({ max: 500 }).withMessage('Nombre del producto debe ser máximo 500 caracteres'),
     body('price')
         .notEmpty().withMessage('Precios del producto es requerido').bail()
         .isNumeric().withMessage('Precio del producto no válido'),
